@@ -1,0 +1,26 @@
+name: build docs
+
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+    name: Asciidoctoring the docs to HTML.
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Generate html and copy images
+      id: prepare_docs
+      uses: avattathil/asciidoctor-action@master
+      with:
+          program: "make"
+    - name: Deploy docs
+      id: deploy_docs
+      uses: peaceiris/actions-gh-pages@v3
+      with: 
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: docs
+        publish_dir: ./docs/
+        destination_dir: ./docs/
