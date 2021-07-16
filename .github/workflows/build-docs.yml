@@ -15,12 +15,7 @@ jobs:
       id: prepare_docs
       uses: avattathil/asciidoctor-action@master
       with:
-          program: "mkdir -p ./docs"
-          program: "cp ./config/index.html ./docs"
-          program: "asciidoctor -D docs -a linkcss -a stylesheet=.config/lab-style.css --backend=html5 ./labs/*.adoc"
-          program: "find ./labs/images/ -type f -name \*.png -exec cp -R -r {} docs/ \;"
-          program: "cp -r ./labs/manifest.json docs/"
-          program: "ls docs/"
+          program: "make"
     - name: Deploy docs
       id: deploy_docs
       uses: peaceiris/actions-gh-pages@v3
