@@ -1,0 +1,83 @@
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+@import url(//fonts.googleapis.com/css?family=Noto+Sans);
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--headerBGColor:#ee0100; 
+--secondaryBGColor:#B71C1C; 
+--linkColor:#f83d3d;
+--headerColor:#ffffff;
+}
+
+body{font-family: "Noto Sans",sans-serif;}
+
+#header{background-color:var(--headerBGColor); padding:25px;max-width: none;}
+#footer{background-color: var(--secondaryBGColor);}
+h1,h2,h3{background-color:var(--headerBGColor);color:var(--headerColor) !important;font-family:"Noto Sans",sans-serif;text-decoration:none;padding:10px;}
+h1{font-size:30px;}
+h2{font-size:25px;}
+h3{font-size:20px;}
+h4,h5,h6{color:var(--headerBGColor);}
+.title{color:var(--secondaryBGColor) !important;font-size:20px;font-family:"Noto Sans",sans-serif;font-style: normal; font-weight: normal;}
+p{font-family: "Noto Sans",sans-serif ! important}
+#toc.toc2 a:link{color:white;}
+
+a {
+  text-decoration: none;
+  color: var(--linkColor);
+}
+a:hover {
+  color: var(--secondaryBGColor);
+}
+.quoteblock blockquote::before {
+  color: var(--linkColor);
+}
+mark {
+  color: var(--headerColor);
+  background-color: var(--linkColor);
+}
+
+/* Card styling */
+.sect1{border-bottom:1px solid grey;border-radius:8px;}
+
+/* Table styles */
+th{background-color: var(--linkColor);color:#FFFFFF;}
+
+#toc.toc2{background-color:var(--secondaryBGColor);color:white !important;}
+#toc.toc2.a{color:var(--headerColor);}
+#toc.toc2.a:active{color:var(--headerColor) !important;}
+#toc.toc2.a:visited{color:var(--headerColor) !important;}
+#toctitle{color:white;font-size: 16px;}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+}
+
+#header, #content, #footnotes, #footer {
+  margin-left: 0px;
+  max-width: none;
+}
+
+#header {
+  display: none;
+}
+
+#code {
+  color: #2f6400;
+}
+
+.title {
+  color: navy;
+  font-style: italic;
+}
