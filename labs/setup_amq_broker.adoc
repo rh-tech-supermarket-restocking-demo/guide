@@ -98,3 +98,22 @@ spec:
   routingType: anycast
 ----
 
+== Step 4: Check Broker Setup
+
+Finally, we can access the brokers management web-console to see if everything is setup as expected.
+
+Using the Administrator mode, navigate to the Routes view and locate a route with the name "supermarket-broker-wconsj-0-svc-rte".
+
+image::amq-broker-console-route.png[AMQ Broker Console Route]
+
+Continue by clicking on the Location (URL), which will open a website where you will click the "Management Console" link. This will open the broker management web-console. 
+
+The console will ask you for login credentials. Use the username and password specified in the configuration YAML used when creating the broker (in step 2).
+
+* Username: root
+* Password: toor
+
+Upon login, you will be presented with a directory tree with a root directory called "amq-broker".
+Click on the second-level directory called "addresses". This will expand a list of further directories, which should include a directory for each of the addresses we configured. Clicking on any of those will show a directory "queues" containing a directory "anycast", which contains the default queue configured for this address. 
+
+image::amq-broker-console-view.png[AMQ Broker Console View]
