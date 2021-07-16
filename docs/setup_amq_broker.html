@@ -151,10 +151,51 @@ spec:
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_step_4_check_broker_setup">Step 4: Check Broker Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally, we can access the brokers management web-console to see if everything is setup as expected.</p>
+</div>
+<div class="paragraph">
+<p>Using the Administrator mode, navigate to the Routes view and locate a route with the name "supermarket-broker-wconsj-0-svc-rte".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="amq-broker-console-route.png" alt="AMQ Broker Console Route">
+</div>
+</div>
+<div class="paragraph">
+<p>Continue by clicking on the Location (URL), which will open a website where you will click the "Management Console" link. This will open the broker management web-console.</p>
+</div>
+<div class="paragraph">
+<p>The console will ask you for login credentials. Use the username and password specified in the configuration YAML used when creating the broker (in step 2).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Username: root</p>
+</li>
+<li>
+<p>Password: toor</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Upon login, you will be presented with a directory tree with a root directory called "amq-broker".
+Click on the second-level directory called "addresses". This will expand a list of further directories, which should include a directory for each of the addresses we configured. Clicking on any of those will show a directory "queues" containing a directory "anycast", which contains the default queue configured for this address.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="amq-broker-console-view.png" alt="AMQ Broker Console View">
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-16 18:21:25 UTC
+Last updated 2021-07-16 18:37:58 UTC
 </div>
 </div>
 </body>
