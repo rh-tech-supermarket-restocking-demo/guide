@@ -2,9 +2,13 @@
 
 ## Summary
 
-## Install the OpenShift AMQ Broker Operator
+## Setup the OpenShift AMQ Broker Operator
+
+
+. Find the AMQ Broker Operator in the Operator Hub. Continue by selecting it and clicking "Install".
 
 image::amq-operator-hub.png[AMQ Broker Operator]
+
 
 
 ## 
