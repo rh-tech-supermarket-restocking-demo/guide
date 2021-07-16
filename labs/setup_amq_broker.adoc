@@ -1,21 +1,17 @@
-## Setup AMQ Broker
 
-## Summary
+== Summary
 
-## Requireprents
+
+== Requirements
 
 Project named supermarket
 
-## Setup the OpenShift AMQ Broker Operator
+== Step 1: Install the AMQ Broker Operator
 
-
-+++<b>Step #1 =></b>+++ 
 Find the AMQ Broker Operator in the Operator Hub. Continue by selecting it and clicking "Install".
 
 image::amq-broker-operator-hub.png[AMQ Broker Operator Hub]
 
-
-+++<b>Step #2 =></b>+++ 
 Set the following parameters in the Operator installation form, then click "Install".
 
 * Update channel: 7.x
@@ -27,10 +23,12 @@ image::amq-broker-operator-installation.png[AMQ Broker Operator Installation]
 
 Wait for the Operator installation to complete. Open the AMQ Broker Operator management view but clicking on "View Operator" un the installation completion screen, or navigate to it via the "Installed Operators" tab in the left side-bar menu of the Administrator access.
 
-+++<b>Step #3 =></b>+++
+
+== Step 2: Seup the Supermarket Message Broker
+
 On the AMQ Broker Operator view, select the "AMQ Broker" tab, then click "Create ActiveMQArtemis". Upon being presented with the ActiveMQArtemis configuration form, switch to the YAML view. Replace its content with the following YAML, then click "Create".
 
-.Supermarket Broker YAML Configuration
+.Supermarket Broker YAML configuration
 [source,yaml]
 ----
 apiVersion: broker.amq.io/v2alpha4
@@ -65,10 +63,10 @@ spec:
 
 The deployment of the broker instance can take some time. Switch to the Developer mode and navigate to the Topology view. Here you can wait for a dark blue circle to appear around the "supermarket-broker-ss" deployment.
 
-+++<b>Step #4 =></b>+++
+== Step 3: Setup the Broker Addresses
 Switch back to the Administrator mode and navigate back to the AMQ Broker Operator view. Select the "AMQ Broker Address" tab, then click "Create ActiveMQArtemisAddress". Upon being presented with the ActiveMQArtemisAddress configuration form, switch to the YAML view. Replace its content with the following YAML, then click "Create".
 
-.ActiveMQArtemisAddress YAML Configuration
+.product-purchased-address YAML configuration
 [source,yaml]
 ----
 apiVersion: broker.amq.io/v2alpha2
@@ -83,4 +81,20 @@ spec:
   routingType: anycast
 ----
 
-Continue by creating 
+Continue by repeating this step for the following address configuration as well. 
+
+.shelve-restock-required-address YAML configuration
+[source,yaml]
+----
+apiVersion: broker.amq.io/v2alpha2
+kind: ActiveMQArtemisAddress
+metadata:
+  name: supermarket-broker-shelve-restock-required-address
+  namespace: supermarket
+spec:
+  addressName: shelveRestockRequiredAddress
+  queueName: shelveRestockRequiredAddressQueue0
+  removeFromBrokerOnDelete: true
+  routingType: anycast
+----
+
