@@ -1,9 +1,0 @@
-{
-    "intro": "Introduction",
-    "setup_amq_broker": "Setup AMQ Broker",
-    "setup_pam": "Setup PAM",
-    "deploy_till": "Deploy the Store Till",
-    "deploy_stock": "Deploy the Stock Manager",
-    "deploy_router": "Deploy Message Router",
-    "test_application": "Test the Application"
-}
