@@ -2,13 +2,23 @@
 
 ## Summary
 
+## Requireprents
+
+Project named supermarket
+
 ## Setup the OpenShift AMQ Broker Operator
 
 
-. Find the AMQ Broker Operator in the Operator Hub. Continue by selecting it and clicking "Install".
++++<b>Step #1 =></b>+++ Find the AMQ Broker Operator in the Operator Hub. Continue by selecting it and clicking "Install".
 
-image::amq-operator-hub.png[AMQ Broker Operator]
+image::amq-broker-operator-hub.png[AMQ Broker Operator Hub]
 
 
++++<b>Step #2 =></b>+++ In the operator installation form, make sure to set the following parameters, then click "Install".
 
-## 
+* Update channel: 7.x
+* Installation mode: A specific namespace on the cluster
+* Installed Namespa: supermarket
+* Approval strategy: Automatic
+
+image::amq-broker-operator-installation.png[AMQ Broker Operator Installation]
