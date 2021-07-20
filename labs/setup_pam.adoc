@@ -18,15 +18,45 @@ Login with your OpenShift credentials & confirm authorization.
 
 Set the following parameters under *1. Installation*
 
-Application name: RHPAM 
-Environment: rhpam-authoring
-Admin username: admin
-Admin password: password
+* Application name: RHPAM 
+* Environment: rhpam-authoring
+* Admin username: admin
+* Admin password: password
 
 Set the following parameters under *2. Security*
 
+* Authentication method: Internal
 
-Click
+Set the following parameters under *3. Components - Console*
+
+*Scroll down to Resource quotas*
+
+* Memory request: 8Gi
+* Memory limit: 8Gi
+
+*3. Components - KIE Servers*
+
+* Add new KIE server
+* Id: kieserver
+* Name: Kieserver
+
+*Scroll down to Resource quotas*
+
+* Memory request: 4Gi
+* Memory limit: 4Gi
+
+*Scroll down to Database*
+
+* Database type: MySQL
+
+*Click next till you reach 4. Confirmation*
+
+*Click view YAML*
+
+It should match the code below.
+
+
+*Click "Deploy"*
 
 
 
