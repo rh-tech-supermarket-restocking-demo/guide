@@ -1,3 +1,33 @@
 ## Setup Process Automation Manager
+== Summary 
 
-### Placeholder
+== Requirements
+
+
+== Step 1: Install the Business Automation Operator
+
+Find the Business Automation Operator in the Operator Hub. Continue by selecting this operator and clicking "Install".
+
+image::pam-operator-install.png[PAM Operator Install]
+
+Once the operator has installed, click "Installed Operators", on the right hand side of click the blue hyperlink below installer.
+
+image::pam-operator-install-2.png[PAM Operator Installer]
+
+Login with your OpenShift credentials & confirm authorization.
+
+Set the following parameters under *1. Installation*
+
+Application name: RHPAM 
+Environment: rhpam-authoring
+Admin username: admin
+Admin password: password
+
+Set the following parameters under *2. Security*
+
+
+Click
+
+
+
+.### Placeholder
