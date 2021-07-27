@@ -1,5 +1,6 @@
 ## Setup Process Automation Manager
 == Summary 
+This section will walk you through deploying Red Hat Process Automation Manager via the OpenShift Operator. 
 
 == Requirements
 
