@@ -60,5 +60,5 @@ Set the following parameters under *3. Components - Console*
 
 After a few minutes the required Pods will have been spun up. The cluster topology / workloads should look like the below:
 
-image::pam-operator-install-topology.png[PAM Operator Install topology]
+image::pam-operator-install-topology.PNG[PAM Operator Install topology]
 
