@@ -51,13 +51,10 @@ Set the following parameters under *3. Components - Console*
 
 *Click next till you reach 4. Confirmation*
 
-*Click view YAML*
-
-It should match the code below.
-
 
 *Click "Deploy"*
 
+After a few minutes the required Pods will have been spun up. The cluster topology / workloads should look like the below:
 
+image::pam-operator-install-topology.png[PAM Operator Install topology]
 
-.### Placeholder
