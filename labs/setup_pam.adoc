@@ -78,7 +78,7 @@ Click import project and paste in the following repoistory link: https://github.
 
 Then import the Retail_Demo project. 
 
-== Step 3: Deploying the process
+== Step 3: Deploying the process.
 
 Once you have completed Step 2, you can deploy the process by clicking the "Deploy" button the on the right hand side of Business Central. 
 
