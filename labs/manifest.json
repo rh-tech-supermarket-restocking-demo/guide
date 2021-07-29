@@ -4,6 +4,7 @@
     "setup_amq_broker": "Setup AMQ Broker",
     "deploy_stock": "Deploy the Stock Manager",
     "setup_pam": "Setup PAM",
+    "setup_camel_k": "Setup Camel K",
     "create_pam_integration": "Create PAM Integration",
     "create_till_integration": "Create Till Integration"
 }
