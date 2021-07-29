@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.15">
+<title>Setup Camel K</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Setup Camel K</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following labs will make use of Camel K to implement the integration of the Till and PAM. This requires the Camel K operator to be installed on OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_operator">Install the Operator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the Administrator mode, navigate to the Operator Hub. Search for and select the "Red Hat Integration - Camel K" operator and progress by clicking "Install".</p>
+</div>
+<div class="paragraph">
+<p>To populate the form, enter the following parameters:</p>
+</div>
+<div class="listingblock">
+<div class="title">Installation mode</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">A specific namespace on the cluster</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Installed Namespace</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">&lt;select the project you are working in&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Approval strategy</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">Automatic</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the operator installation by clicking "Install".</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-07-29 08:25:28 UTC
+</div>
+</div>
+</body>
+</html>
