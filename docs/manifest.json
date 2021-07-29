@@ -1,5 +1,4 @@
 {
-    "intro": "Introduction",
     "deploy_till": "Deploy the Store Till",
     "setup_amq_broker": "Setup AMQ Broker",
     "deploy_stock": "Deploy the Stock Manager",
