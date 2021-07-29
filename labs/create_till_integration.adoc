@@ -1,0 +1,93 @@
+= Create Till Integration
+
+== Introduction
+
+The Till emulator web-app sends out POST requests for product purchases. The information on purchases must be available as messages on broker though, which is why we need a Camel K integration that takes care of acting as a web-API backend that forwards incoming requests as messages to the broker. 
+
+== Note
+
+The current Camel K implementation provides a very limited API, which does not provide options for the required Cross-Origin Resource Sharing configurations. Since the Till website is available as a route starting with a different 
+subdomain than the Camel K API-endpoint route, the browser would block any requests because CORS is disabled by default and has to be enabled on the server-side. To circumvent this problem, we additionally deploy a NGINX reverse-proxy as a API-Gateway for the Till. This API-Gateway will forward any incoming requests to the Camel K integration.
+
+== Preperation
+
+The Camel K integration can be found on GitHub. You must clone the repository 
+to then setup and deploy it. 
+
+[source,shell]
+----
+git clone git@github.com:rh-tech-supermarket-restocking-demo/till-integration.git
+----
+
+== Create a ConfigMap
+
+The Camel K integration requires some parameters that we will provide using 
+a ConfigMap on OpenShift. We will do so by using the OpenShift CLI "oc" to 
+upload the application.properties file as a ConfigMap.
+
+Note: Make sure you login to the cluster and enter the correct project using the CLI first.
+
+[source,shell]
+----
+oc create configmap till-integration-amqp --from-file=application.properties
+----
+
+== Deploy Camel
+
+We can continue by deploying the Camel integration that can be found in the TillIntegration.java file. We will use the kamel CLI for this.
+
+[source,shell]
+----
+kamel run TillIntegration.java --config configmap:till-integration-amqp
+----
+
+We can run the following command to see if the deployment is happening.
+
+[source,shell]
+----
+kamel get
+----
+
+
+== Deploy API-Gateway
+
+As explained in the Note at the top of this document, we will need to deploy an NGINX reverse-proxy. In the Developer mode, navigate to the view for adding a new application. Select the "Container Image" option. To populate the form, enter the following parameters:
+
+.Image name
+[source,shell]
+----
+quay.io/max_kossatz/api-gateway
+----
+
+.Runtime icon
+[source,shell]
+----
+nginx
+----
+
+.Application
+[source,shell]
+----
+till-app
+----
+
+.Name
+[source,shell]
+----
+api-gateway
+----
+
+.Resource type
+[source,shell]
+----
+Deployment
+----
+
+.Create route
+[source,shell]
+----
+True
+----
+
+Complete the deployment by clicking "Create".
+OpenShift will now start a pod using the provided container image.

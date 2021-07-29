@@ -1,0 +1,48 @@
+= Create PAM Integration
+
+== Introduction
+
+The Process Automation Manager, providing the restocking business processs,
+uses a REST web-API. The Stock Backend on the other hand sends a message to 
+the broker when a shelve has to be restocked. To connect both, we need 
+to deploy a Camel K integration, which consumes AMQP messages from the broker 
+and forwards them via HTTP to PAM.
+
+== Preperation
+
+The Camel K integration can be found on GitHub. You must clone the repository 
+to then setup and deploy it. 
+
+[source,shell]
+----
+git clone git@github.com:rh-tech-supermarket-restocking-demo/pam-integration.git
+----
+
+== Create a ConfigMap
+
+The Camel K integration requires some parameters that we will provide using 
+a ConfigMap on OpenShift. We will do so by using the OpenShift CLI "oc" to 
+upload the application.properties file as a ConfigMap.
+
+Note: Make sure you login to the cluster and enter the correct project using the CLI first.
+
+[source,shell]
+----
+oc create configmap pam-integration-amqp --from-file=application.properties
+----
+
+== Deploy Camel
+
+We can continue by deploying the Camel integration that can be found in the PAMIntegration.java file. We will use the kamel CLI for this.
+
+[source,shell]
+----
+kamel run PAMIntegration.java --config configmap:pam-integration-amqp
+----
+
+We can run the following command to see if the deployment is happening.
+
+[source,shell]
+----
+kamel get
+----

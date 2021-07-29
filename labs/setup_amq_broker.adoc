@@ -1,12 +1,19 @@
+= Deploy and setup AMQ Broker
 
-== Summary
+== Introduction 
+
+The tracking of product purchases and the raising of restock requirements is done through messages sent to 
+and consumed from a message broker, implemented using Red Hat AMQ Broker. In this section we will use the 
+AMQ Broker Operator to setup a broker instance and configure the message addresses needed to establish the 
+communication backbone of our system.
+
+== Note
+
+The following YAML snippets require you to replace the namespace value with the name of the OpenShift
+project you are currently using.
 
 
-== Requirements
-
-Project named supermarket
-
-== Step 1: Install the AMQ Broker Operator
+== Install the AMQ Broker Operator
 
 Find the AMQ Broker Operator in the Operator Hub. Continue by selecting it and clicking "Install".
 
@@ -24,7 +31,7 @@ image::amq-broker-operator-installation.png[AMQ Broker Operator Installation]
 Wait for the Operator installation to complete. Open the AMQ Broker Operator management view but clicking on "View Operator" un the installation completion screen, or navigate to it via the "Installed Operators" tab in the left side-bar menu of the Administrator access.
 
 
-== Step 2: Seup the Supermarket Message Broker
+== Seup the Supermarket Message Broker
 
 On the AMQ Broker Operator view, select the "AMQ Broker" tab, then click "Create ActiveMQArtemis". Upon being presented with the ActiveMQArtemis configuration form, switch to the YAML view. Replace its content with the following YAML, then click "Create".
 
@@ -63,7 +70,7 @@ spec:
 
 The deployment of the broker instance can take some time. Switch to the Developer mode and navigate to the Topology view. Here you can wait for a dark blue circle to appear around the "supermarket-broker-ss" deployment.
 
-== Step 3: Setup the Broker Addresses
+== Setup the Broker Addresses
 Switch back to the Administrator mode and navigate back to the AMQ Broker Operator view. Select the "AMQ Broker Address" tab, then click "Create ActiveMQArtemisAddress". Upon being presented with the ActiveMQArtemisAddress configuration form, switch to the YAML view. Replace its content with the following YAML, then click "Create".
 
 .product-purchased-address YAML configuration
@@ -98,7 +105,7 @@ spec:
   routingType: anycast
 ----
 
-== Step 4: Check Broker Setup
+== Check Broker Setup
 
 Finally, we can access the brokers management web-console to see if everything is setup as expected.
 

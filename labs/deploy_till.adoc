@@ -1,3 +1,57 @@
-## Deploy the Till Web-Application
+= Deploy the Till Web-Application
 
-### Placeholder
+== Introduction
+
+For a supermarket to introduce a guided shelve restocking business process,
+it first needs to keep track of the shelves stock state. To do so, a purchase
+of a product must be recorded as an item being removed from a shelve. 
+
+For this demo, we deploy a supermarket till emulator, implemented as a 
+React JS website. This way we can demonstrate how the purchase of products
+may produce messages that the system can then use to track the stock state 
+and to then accordingly trigger restock business processes when needed.
+
+== Note
+
+The following deployment contains a hard-coded URL, which the frontend will use to request data from (see further guide sections). For this deployment to work, you must fork the GitHub repo mentioned below and change the api-gateway URL in the index.html file. You can then progress by using the GitHub repository URL of your fork rather than the one we show here.
+
+== Deployment
+
+In the Developer mode, navigate to the view for adding a new application. 
+This application is available as a GitHub repo and we will be using OpenShifts S2I 
+feature to deploy directly from source. To do so, select the "From Git" option.
+To populate the form, enter the following parameters:
+
+.Git Repo URL
+[source,shell]
+----
+https://github.com/rh-tech-supermarket-restocking-demo/till-frontend
+----
+
+.Application name
+[source,shell]
+----
+till-app
+----
+
+.Name
+[source,shell]
+----
+till-frontend
+----
+
+.Resource type
+[source,shell]
+----
+Deployment
+----
+
+.Create route
+[source,shell]
+----
+True
+----
+
+Complete the S2I deployment by clicking "Create".
+OpenShift will now build an image from source and
+then start a pod using that image.

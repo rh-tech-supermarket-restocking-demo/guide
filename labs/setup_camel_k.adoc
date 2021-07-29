@@ -1,0 +1,31 @@
+= Setup Camel K
+
+== Introduction
+
+The following labs will make use of Camel K to implement the integration of the Till and PAM. This requires the Camel K operator to be installed on OpenShift.
+
+== Install the Operator
+
+Using the Administrator mode, navigate to the Operator Hub. Search for and select the "Red Hat Integration - Camel K" operator and progress by clicking "Install".
+
+To populate the form, enter the following parameters:
+
+.Installation mode
+[source,shell]
+----
+A specific namespace on the cluster
+----
+
+.Installed Namespace
+[source,shell]
+----
+<select the project you are working in>
+----
+
+.Approval strategy
+[source,shell]
+----
+Automatic
+----
+
+Start the operator installation by clicking "Install". 

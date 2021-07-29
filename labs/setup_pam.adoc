@@ -1,4 +1,6 @@
-== Summary 
+= Setup PAM and import the restocking business process
+
+== Introduction 
 
 This section will walk you through deploying Red Hat Process Automation Manager via the OpenShift Operator.
 
