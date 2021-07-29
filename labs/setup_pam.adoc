@@ -62,3 +62,22 @@ After a few minutes the required Pods will have been spun up. The cluster topolo
 
 image::pam-operator-install-topology.png[PAM Operator Install topology]
 
+== Step 2: Importing the business process
+
+Head over to the topology view in developer console of OpenShift and click the outbound route for Business Central as shown below. 
+
+Sign into Business Central with the username and password we created in the previous step. 
+* Username: admin
+* Password: password
+
+Once logged into Business Central, head over to design section, then click "My Space". 
+
+Click import project and paste in the following repoistory link: https://github.com/rh-tech-supermarket-restocking-demo/pam 
+
+Then import the Retail_Demo project. 
+
+== Step 3: Deploying the process
+
+Once you have completed Step 2, you can deploy the process by clicking the "Deploy" button the on the right hand side of Business Central. 
+
+The setup of PAM is now complete, the business process can now be triggered for the Stock Service. 
