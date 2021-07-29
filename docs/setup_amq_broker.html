@@ -5,29 +5,36 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Summary</title>
+<title>Deploy and setup AMQ Broker</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="article">
 <div id="header">
+<h1>Deploy and setup AMQ Broker</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_summary">Summary</h2>
-<div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_requirements">Requirements</h2>
+<h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Project named supermarket</p>
+<p>The tracking of product purchases and the raising of restock requirements is done through messages sent to
+and consumed from a message broker, implemented using Red Hat AMQ Broker. In this section we will use the
+AMQ Broker Operator to setup a broker instance and configure the message addresses needed to establish the
+communication backbone of our system.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_1_install_the_amq_broker_operator">Step 1: Install the AMQ Broker Operator</h2>
+<h2 id="_note">Note</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following YAML snippets require you to replace the namespace value with the name of the OpenShift
+project you are currently using.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_amq_broker_operator">Install the AMQ Broker Operator</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Find the AMQ Broker Operator in the Operator Hub. Continue by selecting it and clicking "Install".</p>
@@ -67,7 +74,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_2_seup_the_supermarket_message_broker">Step 2: Seup the Supermarket Message Broker</h2>
+<h2 id="_seup_the_supermarket_message_broker">Seup the Supermarket Message Broker</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>On the AMQ Broker Operator view, select the "AMQ Broker" tab, then click "Create ActiveMQArtemis". Upon being presented with the ActiveMQArtemis configuration form, switch to the YAML view. Replace its content with the following YAML, then click "Create".</p>
@@ -111,7 +118,7 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_3_setup_the_broker_addresses">Step 3: Setup the Broker Addresses</h2>
+<h2 id="_setup_the_broker_addresses">Setup the Broker Addresses</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Switch back to the Administrator mode and navigate back to the AMQ Broker Operator view. Select the "AMQ Broker Address" tab, then click "Create ActiveMQArtemisAddress". Upon being presented with the ActiveMQArtemisAddress configuration form, switch to the YAML view. Replace its content with the following YAML, then click "Create".</p>
@@ -152,7 +159,7 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_step_4_check_broker_setup">Step 4: Check Broker Setup</h2>
+<h2 id="_check_broker_setup">Check Broker Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Finally, we can access the brokers management web-console to see if everything is setup as expected.</p>
@@ -195,7 +202,7 @@ Click on the second-level directory called "addresses". This will expand a list 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-29 07:06:06 UTC
+Last updated 2021-07-29 07:36:21 UTC
 </div>
 </div>
 </body>

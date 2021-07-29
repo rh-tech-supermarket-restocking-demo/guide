@@ -5,26 +5,155 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Deploy the Stock Management Service</title>
+<title>Deploy the Stock Backend Service</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="article">
 <div id="header">
+<h1>Deploy the Stock Backend Service</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_deploy_the_stock_management_service">Deploy the Stock Management Service</h2>
+<h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_placeholder_test">Placeholder Test</h3>
-
+<div class="paragraph">
+<p>We have to assume that there is some kind of stock management system that any given
+supermarket uses. To emulate this, we will deploy a Stock backend service,
+which will provide a web-API for registering and updating shelves and their
+stock state. The service will also consume product purchase messages from an
+Red Hat AMQ Broker and update its stock state accordingly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_note">Note</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We are aware that this does not reflect reality very well, since a existing stock
+management system cant be expected to consume messages from a broker. We will in
+the future remove this feature and replace it with an integration, likely using Camel K.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stock_database_deployment">Stock-Database Deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Stock Backend Service uses a PostgreSQL database. In the Developer mode, navigate to the view for adding a new application. Select the "Database" option and then search for and select the "PostgreSQL" template.
+Continue by clicking "Instantiate Template". To populate the form, enter the following parameters:</p>
+</div>
+<div class="listingblock">
+<div class="title">Database Service Name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">stock-db</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">PostgreSQL Connection Username</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">root</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">PostgreSQL Connection Password</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">toor</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">PostgreSQL Database Name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">stock</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Volume Capacity</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">1Gi</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Version of PostgreSQL Image</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">10-el8</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Complete the database deployment by clicking "Create".</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stock_backend_deployment">Stock-Backend Deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the Developer mode, navigate to the view for adding a new application.
+The Stock Backend was developed using Python and a pre-build container image is available
+on a Quay.io image repository. To use this image, select the "Container Image" option.
+To populate the form, enter the following parameters:</p>
+</div>
+<div class="listingblock">
+<div class="title">Image name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">quay.io/max_kossatz/stock-backend</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Runtime icon</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">Python</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Application</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">Create Application</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Application name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">stock-app</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">stock-backend</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Resource type</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">Deployment</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create route</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">True</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Environment variables</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">DB_HOST: stock-db
+DB_DATABASE: stock
+DB_USERNAME: root
+DB_PASSWORD: toor
+BROKER_HOST: supermarket-broker-amqp-0-svc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Complete the deployment by clicking "Create".
+OpenShift will now start a pod using the provided container image.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-29 07:06:06 UTC
+Last updated 2021-07-29 07:36:21 UTC
 </div>
 </div>
 </body>
