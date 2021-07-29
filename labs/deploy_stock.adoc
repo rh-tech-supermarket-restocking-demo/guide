@@ -1,3 +1,123 @@
-## Deploy the Stock Management Service
+= Deploy the Stock Backend Service
 
-### Placeholder Test
+== Introduction
+
+We have to assume that there is some kind of stock management system that any given 
+supermarket uses. To emulate this, we will deploy a Stock backend service, 
+which will provide a web-API for registering and updating shelves and their 
+stock state. The service will also consume product purchase messages from an 
+Red Hat AMQ Broker and update its stock state accordingly.
+
+== Note
+
+We are aware that this does not reflect reality very well, since a existing stock 
+management system cant be expected to consume messages from a broker. We will in 
+the future remove this feature and replace it with an integration, likely using Camel K.
+
+
+== Stock-Database Deployment
+
+The Stock Backend Service uses a PostgreSQL database. In the Developer mode, navigate to the view for adding a new application. Select the "Database" option and then search for and select the "PostgreSQL" template. 
+Continue by clicking "Instantiate Template". To populate the form, enter the following parameters:
+
+.Database Service Name
+[source,shell]
+----
+stock-db
+----
+
+.PostgreSQL Connection Username
+[source,shell]
+----
+root
+----
+
+.PostgreSQL Connection Password
+[source,shell]
+----
+toor
+----
+
+.PostgreSQL Database Name
+[source,shell]
+----
+stock
+----
+
+.Volume Capacity
+[source,shell]
+----
+1Gi
+----
+
+.Version of PostgreSQL Image
+[source,shell]
+----
+10-el8
+----
+
+Complete the database deployment by clicking "Create".
+
+
+== Stock-Backend Deployment
+
+In the Developer mode, navigate to the view for adding a new application. 
+The Stock Backend was developed using Python and a pre-build container image is available 
+on a Quay.io image repository. To use this image, select the "Container Image" option.
+To populate the form, enter the following parameters:
+
+.Image name
+[source,shell]
+----
+quay.io/max_kossatz/stock-backend
+----
+
+.Runtime icon
+[source,shell]
+----
+Python
+----
+
+.Application
+[source,shell]
+----
+Create Application
+----
+
+.Application name
+[source,shell]
+----
+stock-app
+----
+
+.Name
+[source,shell]
+----
+stock-backend
+----
+
+.Resource type
+[source,shell]
+----
+Deployment
+----
+
+.Create route
+[source,shell]
+----
+True
+----
+
+.Environment variables
+[source,shell]
+----
+DB_HOST: stock-db
+DB_DATABASE: stock
+DB_USERNAME: root
+DB_PASSWORD: toor
+BROKER_HOST: supermarket-broker-amqp-0-svc
+----
+
+
+Complete the deployment by clicking "Create".
+OpenShift will now start a pod using the provided container image.
