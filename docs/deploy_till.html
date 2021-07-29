@@ -10,21 +10,83 @@
 </head>
 <body class="article">
 <div id="header">
+<h1>Deploy the Till Web-Application</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_deploy_the_till_web_application">Deploy the Till Web-Application</h2>
+<h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_placeholder">Placeholder</h3>
-
+<div class="paragraph">
+<p>For a supermarket to introduce a guided shelve restocking business process,
+it first needs to keep track of the shelves stock state. To do so, a purchase
+of a product must be recorded as an item being removed from a shelve.</p>
+</div>
+<div class="paragraph">
+<p>For this demo, we deploy a supermarket till emulator, implemented as a
+React JS website. This way we can demonstrate how the purchase of products
+may produce messages that the system can then use to track the stock state
+and to then accordingly trigger restock business processes when needed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_note">Note</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following deployment contains a hard-coded URL, which the frontend will use to request data from (see further guide sections). For this deployment to work, you must fork the GitHub repo mentioned below and change the api-gateway URL in the index.html file. You can then progress by using the GitHub repository URL of your fork rather than the one we show here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment">Deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the Developer mode, navigate to the view for adding a new application.
+This application is available as a GitHub repo and we will be using OpenShifts S2I
+feature to deploy directly from source. To do so, select the "From Git" option.
+To populate the form, enter the following parameters:</p>
+</div>
+<div class="listingblock">
+<div class="title">Git Repo URL</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">https://github.com/rh-tech-supermarket-restocking-demo/till-frontend</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Application name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">till-app</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Name</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">till-frontend</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Resource type</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">Deployment</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create route</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Complete the S2I deployment by clicking "Create".
+OpenShift will now build an image from source and
+then start a pod using that image.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-27 14:41:48 UTC
+Last updated 2021-07-29 07:06:06 UTC
 </div>
 </div>
 </body>
