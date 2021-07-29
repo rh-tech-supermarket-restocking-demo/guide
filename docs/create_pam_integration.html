@@ -5,26 +5,83 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Deploy the Message Router</title>
+<title>Create PAM Integration</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body class="article">
 <div id="header">
+<h1>Create PAM Integration</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_deploy_the_message_router">Deploy the Message Router</h2>
+<h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_placeholder_test">Placeholder Test</h3>
-
+<div class="paragraph">
+<p>The Process Automation Manager, providing the restocking business processs,
+uses a REST web-API. The Stock Backend on the other hand sends a message to
+the broker when a shelve has to be restocked. To connect both, we need
+to deploy a Camel K integration, which consumes AMQP messages from the broker
+and forwards them via HTTP to PAM.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preperation">Preperation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Camel K integration can be found on GitHub. You must clone the repository
+to then setup and deploy it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">git clone git@github.com:rh-tech-supermarket-restocking-demo/pam-integration.git</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_configmap">Create a ConfigMap</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Camel K integration requires some parameters that we will provide using
+a ConfigMap on OpenShift. We will do so by using the OpenShift CLI "oc" to
+upload the application.properties file as a ConfigMap.</p>
+</div>
+<div class="paragraph">
+<p>Note: Make sure you login to the cluster and enter the correct project using the CLI first.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">oc create configmap pam-integration-amqp --from-file=application.properties</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_camel">Deploy Camel</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can continue by deploying the Camel integration that can be found in the PAMIntegration.java file. We will use the kamel CLI for this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">kamel run PAMIntegration.java --config configmap:pam-integration-amqp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can run the following command to see if the deployment is happening.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">kamel get</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-29 07:36:21 UTC
+Last updated 2021-07-29 08:18:43 UTC
 </div>
 </div>
 </body>
